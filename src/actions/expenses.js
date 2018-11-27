@@ -1,0 +1,35 @@
+'use strict';
+
+import uuid from 'uuid';
+
+// ADD_EXPENSE
+const addExpense = ({
+  description = '',
+  note = '',
+  amount = '',
+  createAt = 0,
+} = {}) => ({
+  type: 'ADD_EXPENSE',
+  expense: {
+    id: uuid(),
+    description,
+    note,
+    amount,
+    createAt,
+  },
+});
+
+// REMOVE_EXPENSE
+const removeExpense = ({ id } = {}) => ({
+  type: 'REMOVE_EXPENSE',
+  id,
+});
+
+// EDIT_EXPENSE
+const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates,
+});
+
+export { addExpense, removeExpense, editExpense };

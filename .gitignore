@@ -2,3 +2,4 @@
 node_modules/
 .eslintrc
 .gitignore
+!/src/playground/redux101.js
