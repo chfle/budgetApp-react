@@ -1,11 +1,12 @@
-'use strict';
-
 import React from 'react';
+import ExpenseList from './ExpenseList';
+import ExpenseListFilters from './ExpenseListFilters';
 
-const ExpenseDashBoardPage = () => (
+const ExpenseDashboardPage = () => (
   <div>
-        This is a dashboard!
+    <ExpenseListFilters />
+    <ExpenseList />
   </div>
 );
 
-export default ExpenseDashBoardPage;
+export default ExpenseDashboardPage;

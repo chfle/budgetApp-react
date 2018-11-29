@@ -1,13 +1,9 @@
-'use strict';
-
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => (
   <div>
-        This is the 404 Page -
-    {' '}
-    <Link to="/">Go home</Link>
+    404 - <Link to="/">Go home</Link>
   </div>
 );
 
