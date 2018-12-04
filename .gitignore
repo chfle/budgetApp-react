@@ -5,3 +5,4 @@ node_modules/
 src/playground/
 src/tests/
 jest.config.json
+public/scripts/
