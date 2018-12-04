@@ -43,6 +43,7 @@
     "regenerator-runtime": "^0.13.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.10"
@@ -56,4 +57,3 @@
   "author": "Christian Lehnert",
   "license": "ISC"
 }
-

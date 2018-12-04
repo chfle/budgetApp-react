@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
   const isProd = env === 'production';
@@ -36,6 +37,18 @@ module.exports = (env) => {
     plugins: [
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            output: {
+              comments: false,
+            },
+          },
+        }),
+      ],
+
+    },
     devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
   };
 };
