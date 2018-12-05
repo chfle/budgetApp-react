@@ -25,8 +25,18 @@ module.exports = (env) => {
           test: /\.s?css$/,
           use: [
             MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
           ],
         },
       ],
@@ -60,6 +70,6 @@ module.exports = (env) => {
       ],
 
     },
-    devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: isProd ? 'source-map' : 'inline-source-map',
   };
 };
