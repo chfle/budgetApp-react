@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = (env) => {
   const isProd = env === 'production';
@@ -8,7 +10,7 @@ module.exports = (env) => {
   return {
     entry: './src/app.js',
     output: {
-      path: path.resolve(__dirname, 'public/scripts'),
+      path: path.resolve(__dirname, 'public/'),
       filename: 'bundle.js',
     },
     module: {
@@ -22,7 +24,7 @@ module.exports = (env) => {
         }, {
           test: /\.s?css$/,
           use: [
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader',
           ],
@@ -36,6 +38,15 @@ module.exports = (env) => {
     },
     plugins: [
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new MiniCssExtractPlugin({
+        filename: 'styles.css',
+      }),
+      new OptimizeCssAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+        canPrint: true,
+      }),
     ],
     optimization: {
       minimizer: [
