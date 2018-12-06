@@ -1,75 +1,32 @@
 const path = require('path');
-const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = (env) => {
-  const isProd = env === 'production';
+  const isProduction = env === 'production';
 
   return {
     entry: './src/app.js',
     output: {
-      path: path.resolve(__dirname, 'public/'),
+      path: path.join(__dirname, 'public'),
       filename: 'bundle.js',
     },
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-          },
-        }, {
-          test: /\.s?css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-          ],
-        },
-      ],
+      rules: [{
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/,
+      }, {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      }],
     },
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
     devServer: {
-      contentBase: path.resolve(__dirname, 'public'),
-      publicPath: '/scripts/',
+      contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
     },
-    plugins: [
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new MiniCssExtractPlugin({
-        filename: 'styles.css',
-      }),
-      new OptimizeCssAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-        canPrint: true,
-      }),
-    ],
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            output: {
-              comments: false,
-            },
-          },
-        }),
-      ],
-
-    },
-    devtool: isProd ? 'source-map' : 'inline-source-map',
   };
 };

@@ -7,6 +7,7 @@
     "express": "^4.16.4",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.1",
+    "numeral": "^2.0.6",
     "react": "^16.6.3",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^12.7.0",
@@ -52,15 +53,16 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "start": "node server/server.js",
-    "heroku-postbuild": "npm run build:prod",
     "dev-server": "webpack-dev-server --mode development",
     "build:dev": "webpack",
     "build:prod": "webpack  -p --env production --mode production",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "engines": {
-    "node": "10.13.0"
+    "node": "10.13.0",
+    "npm": "6.4.1"
   },
   "author": "Christian Lehnert",
   "license": "ISC"
