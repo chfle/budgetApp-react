@@ -17,13 +17,13 @@ export class ExpenseListFilters extends React.Component {
 
   onFocusChange = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
-  };
+  }
 
   onTextChange = (e) => {
     this.props.setTextFilter(e.target.value);
   };
 
-  onSelectChange = (e) => {
+  onSortChange = (e) => {
     if (e.target.value === 'date') {
       this.props.sortByDate();
     } else if (e.target.value === 'amount') {
@@ -41,7 +41,7 @@ export class ExpenseListFilters extends React.Component {
         />
         <select
           value={this.props.filters.sortBy}
-          onChange={this.onSelectChange}
+          onChange={this.onSortChange}
         >
           <option value="date">Date</option>
           <option value="amount">Amount</option>
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
   filters: state.filters,
 });
 
-const mapDisPatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   setTextFilter: text => dispatch(setTextFilter(text)),
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
@@ -73,4 +73,4 @@ const mapDisPatchToProps = dispatch => ({
   setEndDate: endDate => dispatch(setEndDate(endDate)),
 });
 
-export default connect(mapStateToProps, mapDisPatchToProps)(ExpenseListFilters);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
