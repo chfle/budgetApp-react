@@ -7,4 +7,5 @@ src/tests/
 jest.config.json
 public/bundle.js
 public/styles.css
-
+.env.development
+.env.test
