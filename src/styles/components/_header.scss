@@ -1,0 +1,20 @@
+.header {
+  background: $charcoal-dark-blue;
+}
+
+.header__content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size 0;
+}
+
+
+.header__title {
+  color: $catskill-white;
+  text-decoration: none;
+
+  h1 {
+    margin: 0;
+  }
+}
