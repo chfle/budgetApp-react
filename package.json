@@ -39,7 +39,7 @@
     "dotenv": "^6.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.7.0",
-    "enzyme-to-json": "^3.3.4",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^5.15.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
